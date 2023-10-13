@@ -11,7 +11,7 @@ class User{
   String city;
   String state;
   String country;
-
+  bool favorite;
   User({
      this.id,
     required this.name,
@@ -25,6 +25,7 @@ class User{
     required this.city,
     required this.state,
     required this.country,
+    required this.favorite
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -40,6 +41,7 @@ class User{
       city: json['location']['city'],
       state: json['location']['state'],
       country: json['location']['country'],
+      favorite: false
     );
   }
 
@@ -55,23 +57,9 @@ class User{
         'city': city,
         'state': state,
         'country': country,
+    'favorite':favorite?1:0
       };
 
-  Map<String, dynamic> toMap() {
-    return {
-      'name': this.name,
-      'gender': this.gender,
-      'phone': this.phone,
-      'email': this.email,
-      'age': this.age,
-      'timezone': this.timezone,
-      'picture': this.picture,
-      'street': this.street,
-      'city': this.city,
-      'state': this.state,
-      'country': this.country,
-    };
-  }
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
@@ -87,6 +75,7 @@ class User{
       city: map['city'] as String,
       state: map['state'] as String,
       country: map['country'] as String,
+      favorite: map['favorite']==1?true:false,
     );
   }
 }

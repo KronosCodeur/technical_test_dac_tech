@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
-
   static const databaseName = 'database.db';
   static const databaseVersion = 1;
 
@@ -13,7 +12,7 @@ class DatabaseHelper {
 
     _database = await openDatabase(databaseName, version: databaseVersion,
         onCreate: (Database db, int version) async {
-          await db.execute('''
+      await db.execute('''
         CREATE TABLE users (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           name TEXT NOT NULL,
@@ -26,10 +25,11 @@ class DatabaseHelper {
           street TEXT NOT NULL,
           city TEXT NOT NULL,
           state TEXT NOT NULL,
-          country TEXT NOT NULL
+          country TEXT NOT NULL,
+          favorite BOOLEAN NOT NULL
         )
       ''');
-        });
+    });
 
     return _database!;
   }
@@ -40,14 +40,14 @@ class DatabaseHelper {
   }
 
   Future<List<Map<String, dynamic>>> query(String table,
-      {String? where, List<dynamic>? whereArgs, String? orderBy, int? limit}) async {
+      {String? where,
+      List<dynamic>? whereArgs,
+      String? orderBy,
+      int? limit}) async {
     final Database db = await database;
 
     return await db.query(table,
-        where: where,
-        whereArgs: whereArgs,
-        orderBy: orderBy,
-        limit: limit);
+        where: where, whereArgs: whereArgs, orderBy: orderBy, limit: limit);
   }
 
   Future<int> update(String table, Map<String, dynamic> values,
@@ -57,12 +57,12 @@ class DatabaseHelper {
     return await db.update(table, values, where: where, whereArgs: whereArgs);
   }
 
-  Future<int> delete(String table, {String? where, List<dynamic>? whereArgs}) async {
+  Future<int> delete(String table,
+      {String? where, List<dynamic>? whereArgs}) async {
     final Database db = await database;
 
     return await db.delete(table, where: where, whereArgs: whereArgs);
   }
-
 
   Future<void> close() async {
     final Database db = await database;
@@ -75,10 +75,11 @@ class DatabaseHelper {
 
     return await db.execute(sql);
   }
+
   Future<void> run() async {
     _database = await openDatabase(databaseName, version: databaseVersion,
         onCreate: (Database db, int version) async {
-          await db.execute('''
+      await db.execute('''
         CREATE TABLE users (
           id INTEGER PRIMARY KEY AUTOINCREMENT,
           name TEXT NOT NULL,
@@ -94,7 +95,6 @@ class DatabaseHelper {
           country TEXT NOT NULL
         )
       ''');
-        });
+    });
   }
-
 }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:technical_test_dac_tech/data/models/user.dart';
+import 'package:technical_test_dac_tech/data/providers/data_provider.dart';
 import 'package:technical_test_dac_tech/themes/app_color_light.dart';
 import 'package:technical_test_dac_tech/utils/button/primary_button.dart';
 import 'package:technical_test_dac_tech/utils/helpers/database_helper.dart';
@@ -71,7 +74,7 @@ class CustomCard extends StatelessWidget {
                         ),
                         PopupMenuItem(
                           onTap: ()async{
-                            await DatabaseHelper().delete('users', where: 'id = ?', whereArgs: [user.id]);
+                            Provider.of<DataProvider>(context,listen: false).removeUser(user);
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -98,6 +101,20 @@ class CustomCard extends StatelessWidget {
                   Icons.more_vert_rounded,
                   color: AppColor.white,
                   size: 30,
+                ),
+              ),
+            ),
+            Positioned(
+              top: 5,
+              left: 5,
+              child: InkWell(
+                onTap: () async{
+                  await Provider.of<DataProvider>(context,listen: false).likeUser(user);
+                },
+                child: FaIcon(
+                  color: user.favorite?AppColor.googleRed:AppColor.white70,
+                  FontAwesomeIcons.solidHeart,
+                  size: 20,
                 ),
               ),
             ),
