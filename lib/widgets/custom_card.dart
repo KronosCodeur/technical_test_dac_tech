@@ -6,11 +6,10 @@ import 'package:provider/provider.dart';
 import 'package:technical_test_dac_tech/data/models/user.dart';
 import 'package:technical_test_dac_tech/data/providers/data_provider.dart';
 import 'package:technical_test_dac_tech/themes/app_color_light.dart';
-import 'package:technical_test_dac_tech/utils/button/primary_button.dart';
-import 'package:technical_test_dac_tech/utils/helpers/database_helper.dart';
 import 'package:technical_test_dac_tech/utils/helpers/radius_helper.dart';
 import 'package:technical_test_dac_tech/utils/helpers/screen_size_helper.dart';
 import 'package:technical_test_dac_tech/utils/helpers/text_helper.dart';
+import 'package:technical_test_dac_tech/widgets/button/primary_button.dart';
 
 class CustomCard extends StatelessWidget {
   const CustomCard({super.key, required this.user});
@@ -35,24 +34,28 @@ class CustomCard extends StatelessWidget {
               right: 0,
               child: InkWell(
                 onTap: () {
-                  final RenderBox overlay = Overlay.of(context).context.findRenderObject() as RenderBox;
-                  final RenderBox cardBox = context.findRenderObject() as RenderBox;
-                  final Offset position = cardBox.localToGlobal(Offset.zero, ancestor: overlay);
+                  final RenderBox overlay = Overlay.of(context)
+                      .context
+                      .findRenderObject() as RenderBox;
+                  final RenderBox cardBox =
+                      context.findRenderObject() as RenderBox;
+                  final Offset position =
+                      cardBox.localToGlobal(Offset.zero, ancestor: overlay);
                   showMenu(
                       position: RelativeRect.fromLTRB(
-                        position.dx+50,
+                        position.dx + 50,
                         position.dy,
-                        position.dx + cardBox.size.width -20,
+                        position.dx + cardBox.size.width - 20,
                         position.dy + cardBox.size.height,
                       ),
-                  color: AppColor.white.withOpacity(0.9),
-                  elevation: 3,
-                  constraints: const BoxConstraints(maxWidth: 120,maxHeight: 120),
-                  context: context,
+                      color: AppColor.white.withOpacity(0.9),
+                      elevation: 3,
+                      constraints:
+                          const BoxConstraints(maxWidth: 120, maxHeight: 120),
+                      context: context,
                       items: [
                         PopupMenuItem(
-                          onTap: (){
-                          },
+                          onTap: () {},
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -73,8 +76,9 @@ class CustomCard extends StatelessWidget {
                           ),
                         ),
                         PopupMenuItem(
-                          onTap: ()async{
-                            Provider.of<DataProvider>(context,listen: false).removeUser(user);
+                          onTap: () async {
+                            Provider.of<DataProvider>(context, listen: false)
+                                .removeUser(user);
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -108,11 +112,12 @@ class CustomCard extends StatelessWidget {
               top: 5,
               left: 5,
               child: InkWell(
-                onTap: () async{
-                  await Provider.of<DataProvider>(context,listen: false).likeUser(user);
+                onTap: () async {
+                  await Provider.of<DataProvider>(context, listen: false)
+                      .likeUser(user);
                 },
                 child: FaIcon(
-                  color: user.favorite?AppColor.googleRed:AppColor.white70,
+                  color: user.favorite ? AppColor.googleRed : AppColor.white70,
                   FontAwesomeIcons.solidHeart,
                   size: 20,
                 ),

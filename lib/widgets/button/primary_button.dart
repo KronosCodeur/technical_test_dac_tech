@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
 class PrimaryButton extends StatefulWidget {
-  const PrimaryButton({super.key, required this.elevation, required this.width, required this.height, required this.child, required this.radius, required this.onPressed, required this.color});
+  const PrimaryButton(
+      {super.key,
+      required this.elevation,
+      required this.width,
+      required this.height,
+      required this.child,
+      required this.radius,
+      required this.onPressed,
+      required this.color});
   final double elevation;
   final double width;
   final double height;
@@ -29,7 +37,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
             borderRadius: widget.radius,
             color: widget.color,
           ),
-          padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
           child: widget.child,
           width: widget.width,
           height: widget.height,
@@ -38,5 +46,3 @@ class _PrimaryButtonState extends State<PrimaryButton> {
     );
   }
 }
-
-

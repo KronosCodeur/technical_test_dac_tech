@@ -8,18 +8,22 @@ class FavoriteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      body: Consumer<DataProvider>(builder: (context, dataProvider, child){
-        return  GridView.builder(
+    return Scaffold(
+      body: Consumer<DataProvider>(builder: (context, dataProvider, child) {
+        return GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               childAspectRatio: 0.65,
               mainAxisSpacing: 20,
-              crossAxisSpacing: 20
-          ),
-          itemCount: dataProvider.users.where((user) => user.favorite==true).toList().length,
+              crossAxisSpacing: 20),
+          itemCount: dataProvider.users
+              .where((user) => user.favorite == true)
+              .toList()
+              .length,
           itemBuilder: (context, index) {
-            final user = dataProvider.users.where((user) => user.favorite==true).toList()[index];
+            final user = dataProvider.users
+                .where((user) => user.favorite == true)
+                .toList()[index];
             return CustomCard(user: user);
           },
         );

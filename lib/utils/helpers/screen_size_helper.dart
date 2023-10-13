@@ -10,7 +10,8 @@ class Device {
   static double getStaticScreenWidth(BuildContext context) {
     return MediaQuery.of(context).size.width;
   }
-   static double getStaticDeviceScreenWidth(BuildContext context,value) {
+
+  static double getStaticDeviceScreenWidth(BuildContext context, value) {
     return MediaQuery.of(context).size.width / value;
   }
 
@@ -31,7 +32,8 @@ class Device {
   static double getStaticScreenHeight(BuildContext context) {
     return MediaQuery.of(context).size.height;
   }
-  static double getStaticDeviceScreenHeight(BuildContext context,value) {
+
+  static double getStaticDeviceScreenHeight(BuildContext context, value) {
     return MediaQuery.of(context).size.height / value;
   }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-class AppRadius{
+class AppRadius {
   static final radius10 = BorderRadius.circular(10);
   static final radius20 = BorderRadius.circular(20);
   static final radius30 = BorderRadius.circular(30);

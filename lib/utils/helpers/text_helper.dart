@@ -1,4 +1,3 @@
-
 import 'package:technical_test_dac_tech/utils/helpers/screen_size_helper.dart';
 
 class AppText {

@@ -20,7 +20,6 @@ class DatabaseHelper {
           phone TEXT NOT NULL,
           email TEXT NOT NULL,
           age TEXT NOT NULL,
-          timezone TEXT NOT NULL,
           picture TEXT NOT NULL,
           street TEXT NOT NULL,
           city TEXT NOT NULL,

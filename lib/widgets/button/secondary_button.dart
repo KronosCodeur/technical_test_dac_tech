@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:technical_test_dac_tech/themes/app_color_light.dart';
 
 class SecondaryButton extends StatefulWidget {
-  const SecondaryButton({super.key, required this.elevation, required this.width, required this.height, required this.child, required this.radius, required this.onPressed, required this.borderWidth, required this.borderColor});
+  const SecondaryButton(
+      {super.key,
+      required this.elevation,
+      required this.width,
+      required this.height,
+      required this.child,
+      required this.radius,
+      required this.onPressed,
+      required this.borderWidth,
+      required this.borderColor});
   final double elevation;
   final double width;
   final double height;
@@ -29,10 +38,11 @@ class _SecondaryButtonState extends State<SecondaryButton> {
           alignment: Alignment.center,
           decoration: BoxDecoration(
             borderRadius: widget.radius,
-            border: Border.all(color: widget.borderColor, width: widget.borderWidth),
+            border: Border.all(
+                color: widget.borderColor, width: widget.borderWidth),
             color: AppColor.white,
           ),
-          padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
           width: widget.width,
           height: widget.height,
           child: widget.child,
@@ -41,5 +51,3 @@ class _SecondaryButtonState extends State<SecondaryButton> {
     );
   }
 }
-
-

@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<DataProvider>(context,listen: false).setUsersData();
+    Provider.of<DataProvider>(context, listen: false).setUsersData();
     return MaterialApp(
       routes: AppRouting.routes,
       debugShowCheckedModeBanner: false,
