@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:technical_test_dac_tech/controllers/api_data_controller.dart';
-import 'package:technical_test_dac_tech/data/models/user.dart';
+import 'package:provider/provider.dart';
+import 'package:technical_test_dac_tech/data/providers/data_provider.dart';
 import 'package:technical_test_dac_tech/routing/app_routes.dart';
-import 'package:technical_test_dac_tech/screens/home_screen.dart';
 import 'package:technical_test_dac_tech/themes/app_color_light.dart';
-import 'package:technical_test_dac_tech/utils/helpers/database_helper.dart';
-import 'package:technical_test_dac_tech/utils/helpers/share_preference_helper.dart';
 import 'package:technical_test_dac_tech/utils/helpers/text_helper.dart';
 
 class RootApp extends StatefulWidget {
@@ -23,25 +20,7 @@ class _RootAppState extends State<RootApp> {
   @override
   void initState() {
     super.initState();
-    _getData();
-  }
-
-  _getData() async {
-    var isNew = await SharedPreferencesHelper.getBoolValue("is_New_User");
-    if (isNew != null) {
-      setState(() {
-        isNewClient = isNew;
-      });
-    }
-    final List<Map<String, dynamic>> usersData =
-    await DatabaseHelper().query('users');
-    if (usersData.isEmpty) {
-      List<User> apiData = await APIDataController.getApiData();
-      for (var item in apiData) {
-        await DatabaseHelper().insert("users", item.toJson());
-      }
-      await SharedPreferencesHelper.setBoolValue("is_New_User", false);
-    }
+    Provider.of<DataProvider>(context, listen: false).setUsersData();
   }
 
   @override

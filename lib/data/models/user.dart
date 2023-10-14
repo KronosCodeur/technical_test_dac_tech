@@ -70,4 +70,5 @@ class User {
       favorite: map['favorite'] == 1 ? true : false,
     );
   }
+
 }

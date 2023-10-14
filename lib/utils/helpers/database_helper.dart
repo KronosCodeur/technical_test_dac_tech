@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
-  static const databaseName = 'database.db';
+  static const databaseName = 'data.db';
   static const databaseVersion = 1;
 
   static Database? _database;
@@ -85,13 +85,13 @@ class DatabaseHelper {
           gender TEXT NOT NULL,
           phone TEXT NOT NULL,
           email TEXT NOT NULL,
-          age TEXT NOT NULL,
-          timezone TEXT NOT NULL,
+          birthday TEXT NOT NULL,
           picture TEXT NOT NULL,
           street TEXT NOT NULL,
           city TEXT NOT NULL,
           state TEXT NOT NULL,
-          country TEXT NOT NULL
+          country TEXT NOT NULL,
+          favorite INTEGER NOT NULL
         )
       ''');
     });

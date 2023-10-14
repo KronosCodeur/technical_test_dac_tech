@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:technical_test_dac_tech/data/providers/data_provider.dart';
 import 'package:technical_test_dac_tech/themes/app_color_light.dart';
+import 'package:technical_test_dac_tech/utils/helpers/screen_size_helper.dart';
 import 'package:technical_test_dac_tech/widgets/custom_card.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,11 +19,11 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: AppColor.background,
       body: Consumer<DataProvider>(builder: (context, dataProvider, child) {
         return GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio: 0.65,
-              mainAxisSpacing: 20,
-              crossAxisSpacing: 20),
+              childAspectRatio: Device.getScreenHeight(context)*0.00095,
+              mainAxisSpacing: Device.getDeviceScreenHeight(context,45),
+              crossAxisSpacing: Device.getDeviceScreenWidth(context,25)),
           itemCount: dataProvider.users.length,
           itemBuilder: (context, index) {
             final user =
@@ -41,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
           size: 40,
         ),
         onPressed: () {
+
           Navigator.pushNamed(context, "/add");
         },
       ),
