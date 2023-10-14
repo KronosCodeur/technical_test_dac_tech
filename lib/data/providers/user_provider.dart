@@ -71,17 +71,17 @@ class UserProvider extends ChangeNotifier {
     notifyListeners();
   }
   reset(){
-    lastName = " ";
-    firstName = " ";
+    lastName = '';
+    firstName = '';
     gender = genders[0];
-    phone= " ";
-     email= " ";
-     birthday= " ";
-     picture= " ";
-     street= " ";
-     city= " ";
-     state= " ";
-     country= " ";
+    phone= '';
+     email= '';
+     birthday= '';
+     picture= '';
+     street= '';
+     city= '';
+     state= '';
+     country= '';
      saveData();
      updateData();
      notifyListeners();
@@ -110,5 +110,6 @@ class UserProvider extends ChangeNotifier {
     state= user.state;
     country= user.country;
     favorite = user.favorite;
+    notifyListeners();
   }
 }

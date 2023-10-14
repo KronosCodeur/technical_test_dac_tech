@@ -27,6 +27,7 @@ class SearchCard extends StatelessWidget {
         color: AppColor.googleBlue,
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           user.picture.contains("http")
               ? CircleAvatar(
@@ -37,7 +38,9 @@ class SearchCard extends StatelessWidget {
             radius: Device.getDeviceScreenWidth(context, 10),
             backgroundImage: FileImage(File(user.picture)),
           ),
+          Gap(10),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 user.name,
@@ -51,6 +54,16 @@ class SearchCard extends StatelessWidget {
               ),
               Text(
                 user.phone,
+                style: GoogleFonts.poppins(
+                  fontSize: AppText.p3(context),
+                  fontWeight: FontWeight.w600,
+                  color: AppColor.white70,
+                ),
+                softWrap: true,
+                textAlign: TextAlign.start,
+              ),
+              Text(
+                user.country,
                 style: GoogleFonts.poppins(
                   fontSize: AppText.p3(context),
                   fontWeight: FontWeight.w600,

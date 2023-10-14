@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:technical_test_dac_tech/data/models/user.dart';
 
 class SearchProvider extends ChangeNotifier{
-  String parameter = "";
+  String parameter = " ";
   String filter = "name";
   List<User> searchResults = [];
   List listOfSearchFilters = [
