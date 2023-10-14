@@ -33,7 +33,9 @@ class _RootAppState extends State<RootApp> {
         isNewClient = isNew;
       });
     }
-    if (isNewClient) {
+    final List<Map<String, dynamic>> usersData =
+    await DatabaseHelper().query('users');
+    if (usersData.isEmpty) {
       List<User> apiData = await APIDataController.getApiData();
       for (var item in apiData) {
         await DatabaseHelper().insert("users", item.toJson());
@@ -45,12 +47,13 @@ class _RootAppState extends State<RootApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.background,
       appBar: AppBar(
         backgroundColor: AppColor.googleRed,
       ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.only(left: 15,right: 15,top: 10),
           child: AppRouting.listOfScreen[currentIndex],
         ),
       ),

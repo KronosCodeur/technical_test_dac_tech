@@ -4,7 +4,7 @@ class User {
   String gender;
   String phone;
   String email;
-  String age;
+  String birthday;
   String picture;
   String street;
   String city;
@@ -17,7 +17,7 @@ class User {
       required this.gender,
       required this.phone,
       required this.email,
-      required this.age,
+      required this.birthday,
       required this.picture,
       required this.street,
       required this.city,
@@ -31,7 +31,7 @@ class User {
         gender: json['gender'],
         phone: json['phone'],
         email: json['email'],
-        age: json['dob']['date'],
+        birthday: json['dob']['date'].toString().substring(0,10),
         picture: json['picture']['medium'],
         street: json['location']['street']['name'],
         city: json['location']['city'],
@@ -45,7 +45,7 @@ class User {
         'gender': gender,
         'phone': phone,
         'email': email,
-        'age': age,
+        'birthday': birthday,
         'picture': picture,
         'street': street,
         'city': city,
@@ -61,7 +61,7 @@ class User {
       gender: map['gender'] as String,
       phone: map['phone'] as String,
       email: map['email'] as String,
-      age: map['age'] as String,
+      birthday: map['birthday'] as String,
       picture: map['picture'] as String,
       street: map['street'] as String,
       city: map['city'] as String,

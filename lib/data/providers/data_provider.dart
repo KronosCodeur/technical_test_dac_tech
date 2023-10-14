@@ -6,7 +6,7 @@ import 'package:technical_test_dac_tech/utils/helpers/database_helper.dart';
 class DataProvider extends ChangeNotifier {
   List<User> users = [];
   setUsersData() async {
-    users = await UserDataRepository.getDataFromDatabase();
+    users = await UserRepository.getDataFromDatabase();
     notifyListeners();
   }
 
@@ -14,6 +14,11 @@ class DataProvider extends ChangeNotifier {
     users.remove(user);
     await DatabaseHelper()
         .delete('users', where: 'id = ?', whereArgs: [user.id]);
+    notifyListeners();
+  }
+addUser(User user) async {
+    users.add(user);
+    await DatabaseHelper().insert("users", user.toJson());
     notifyListeners();
   }
 

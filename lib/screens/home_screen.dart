@@ -15,6 +15,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.background,
       body: Consumer<DataProvider>(builder: (context, dataProvider, child) {
         return GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -40,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
           size: 40,
         ),
         onPressed: () {
-          Navigator.pushReplacementNamed(context, "/add");
+          Navigator.pushNamed(context, "/add");
         },
       ),
     );

@@ -19,7 +19,7 @@ class DatabaseHelper {
           gender TEXT NOT NULL,
           phone TEXT NOT NULL,
           email TEXT NOT NULL,
-          age TEXT NOT NULL,
+          birthday TEXT NOT NULL,
           picture TEXT NOT NULL,
           street TEXT NOT NULL,
           city TEXT NOT NULL,

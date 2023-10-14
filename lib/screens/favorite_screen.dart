@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:technical_test_dac_tech/data/providers/data_provider.dart';
+import 'package:technical_test_dac_tech/themes/app_color_light.dart';
 import 'package:technical_test_dac_tech/widgets/custom_card.dart';
 
 class FavoriteScreen extends StatelessWidget {
@@ -9,6 +10,7 @@ class FavoriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.background,
       body: Consumer<DataProvider>(builder: (context, dataProvider, child) {
         return GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
