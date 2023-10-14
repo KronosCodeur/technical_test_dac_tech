@@ -5,7 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:technical_test_dac_tech/constants/genders.dart';
-import 'package:technical_test_dac_tech/data/providers/add_user_provider.dart';
+import 'package:technical_test_dac_tech/data/providers/user_provider.dart';
 import 'package:technical_test_dac_tech/data/providers/data_provider.dart';
 import 'package:technical_test_dac_tech/data/repositories/user_data_repository.dart';
 import 'package:technical_test_dac_tech/themes/app_color_light.dart';
@@ -29,8 +29,8 @@ class AddUserScreen extends StatelessWidget {
         backgroundColor: AppColor.googleRed,
         automaticallyImplyLeading: true,
       ),
-      body: Consumer2<AddUserProvider, DataProvider>(
-          builder: (context, addUserProvider, dataProvider, child) {
+      body: Consumer2<UserProvider, DataProvider>(
+          builder: (context, userProvider, dataProvider, child) {
         return Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -45,14 +45,14 @@ class AddUserScreen extends StatelessWidget {
                           radius: Device.getDeviceScreenWidth(context, 5),
                           backgroundColor: AppColor.black26,
                           backgroundImage:
-                              FileImage(File(addUserProvider.picture)),
+                              FileImage(File(userProvider.picture)),
                         ),
                         Positioned(
                           bottom: 5,
                           right: 0,
                           child: InkWell(
                             onTap: () async {
-                              addUserProvider
+                              userProvider
                                   .setPicture(await UserRepository.getImage());
                             },
                             child: Icon(
@@ -71,11 +71,11 @@ class AddUserScreen extends StatelessWidget {
                           flex: 6,
                           child: TextFormField(
                             decoration: inputDecorationGrey(
-                                hint: "Last Name", context: context),
+                                hint: "Last Name", context: context,radius: AppRadius.radius10),
                             keyboardType: TextInputType.name,
-                            initialValue: addUserProvider.lastName,
+                            initialValue: userProvider.lastName,
                             onChanged: (value) =>
-                                addUserProvider.setLastName(value),
+                                userProvider.setLastName(value),
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "This field is required";
@@ -94,10 +94,10 @@ class AddUserScreen extends StatelessWidget {
                           flex: 6,
                           child: TextFormField(
                             decoration: inputDecorationGrey(
-                                hint: "Last Name", context: context),
-                            initialValue: addUserProvider.firstName,
+                                hint: "Last Name", context: context,radius: AppRadius.radius10),
+                            initialValue: userProvider.firstName,
                             onChanged: (value) =>
-                                addUserProvider.setFirstName(value),
+                                userProvider.setFirstName(value),
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "This field is required";
@@ -117,9 +117,9 @@ class AddUserScreen extends StatelessWidget {
                     Gap(Device.getDeviceScreenHeight(context, 90)),
                     TextFormField(
                       decoration:
-                          inputDecorationGrey(hint: "Email", context: context),
-                      initialValue: addUserProvider.email,
-                      onChanged: (value) => addUserProvider.setEmail(value),
+                          inputDecorationGrey(hint: "Email", context: context,radius: AppRadius.radius10),
+                      initialValue: userProvider.email,
+                      onChanged: (value) => userProvider.setEmail(value),
                       validator: (value) {
                         if (!emailIsValid(email: value!)) {
                           return "Invalid email address";
@@ -129,16 +129,16 @@ class AddUserScreen extends StatelessWidget {
                       },
                       keyboardType: TextInputType.emailAddress,
                       style: GoogleFonts.poppins(
-                          color: AppColor.black54,
+                          color: AppColor.black87,
                           fontWeight: FontWeight.w600,
                           fontSize: AppText.p1(context)),
                     ),
                     Gap(Device.getDeviceScreenHeight(context, 90)),
                     TextFormField(
                       decoration: inputDecorationGrey(
-                          hint: "Phone Number", context: context),
-                      initialValue: addUserProvider.phone,
-                      onChanged: (value) => addUserProvider.setPhone(value),
+                          hint: "Phone Number", context: context,radius: AppRadius.radius10),
+                      initialValue: userProvider.phone,
+                      onChanged: (value) => userProvider.setPhone(value),
                       validator: (value) {
                         if (!phoneRegex(phone: value!)) {
                           return "Invalid phone Number";
@@ -148,7 +148,7 @@ class AddUserScreen extends StatelessWidget {
                       },
                       keyboardType: TextInputType.number,
                       style: GoogleFonts.poppins(
-                          color: AppColor.black54,
+                          color: AppColor.black87,
                           fontWeight: FontWeight.w600,
                           fontSize: AppText.p1(context)),
                     ),
@@ -185,9 +185,9 @@ class AddUserScreen extends StatelessWidget {
                                       .displayLarge!
                                       .copyWith(fontSize: AppText.p2(context)),
                                 ),
-                                value: addUserProvider.gender,
+                                value: userProvider.gender,
                                 onChanged: (value) {
-                                  addUserProvider.setGender(value!);
+                                  userProvider.setGender(value!);
                                 },
                                 items: genders.map((gender) {
                                   return DropdownMenuItem(
@@ -208,10 +208,10 @@ class AddUserScreen extends StatelessWidget {
                           flex: 6,
                           child: TextFormField(
                             decoration: inputDecorationGrey(
-                                hint: "Birthday", context: context),
-                            initialValue: addUserProvider.birthday,
+                                hint: "Birthday", context: context,radius: AppRadius.radius10),
+                            initialValue: userProvider.birthday,
                             onChanged: (value) =>
-                                addUserProvider.setBirthday(value),
+                                userProvider.setBirthday(value),
                             validator: (value) {
                               if (!dateIsValid(date: value!)) {
                                 return "jj/mm/aaaa";
@@ -235,11 +235,11 @@ class AddUserScreen extends StatelessWidget {
                           flex: 6,
                           child: TextFormField(
                             decoration: inputDecorationGrey(
-                                hint: "Street", context: context),
+                                hint: "Street", context: context,radius: AppRadius.radius10),
                             keyboardType: TextInputType.name,
-                            initialValue: addUserProvider.street,
+                            initialValue: userProvider.street,
                             onChanged: (value) =>
-                                addUserProvider.setStreet(value),
+                                userProvider.setStreet(value),
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "This field is required";
@@ -258,10 +258,10 @@ class AddUserScreen extends StatelessWidget {
                           flex: 6,
                           child: TextFormField(
                             decoration: inputDecorationGrey(
-                                hint: "City", context: context),
-                            initialValue: addUserProvider.city,
+                                hint: "City", context: context,radius: AppRadius.radius10),
+                            initialValue: userProvider.city,
                             onChanged: (value) =>
-                                addUserProvider.setCity(value),
+                                userProvider.setCity(value),
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "This field is required";
@@ -285,10 +285,10 @@ class AddUserScreen extends StatelessWidget {
                           flex: 6,
                           child: TextFormField(
                             decoration: inputDecorationGrey(
-                                hint: "State", context: context),
-                            initialValue: addUserProvider.state,
+                                hint: "State", context: context,radius: AppRadius.radius10),
+                            initialValue: userProvider.state,
                             onChanged: (value) =>
-                                addUserProvider.setState(value),
+                                userProvider.setState(value),
                             keyboardType: TextInputType.name,
                             validator: (value) {
                               if (value!.isEmpty) {
@@ -308,10 +308,10 @@ class AddUserScreen extends StatelessWidget {
                           flex: 6,
                           child: TextFormField(
                             decoration: inputDecorationGrey(
-                                hint: "Country", context: context),
-                            initialValue: addUserProvider.country,
+                                hint: "Country", context: context,radius: AppRadius.radius10),
+                            initialValue: userProvider.country,
                             onChanged: (value) =>
-                                addUserProvider.setCountry(value),
+                                userProvider.setCountry(value),
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "This field is required";
@@ -355,9 +355,10 @@ class AddUserScreen extends StatelessWidget {
                             height: Device.getDeviceScreenHeight(context, 20),
                             radius: AppRadius.radius10,
                             onPressed: () async{
-                              addUserProvider.setData();
-                              dataProvider.addUser(addUserProvider.user!);
-                              addUserProvider.reset();
+                              userProvider.saveData();
+                              dataProvider.addUser(userProvider.user!);
+                              userProvider.reset();
+                              Navigator.pushReplacementNamed(context, "/root");
                             },
                             color: AppColor.googleRed,
                             child: Text(

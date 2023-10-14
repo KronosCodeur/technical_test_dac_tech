@@ -21,6 +21,11 @@ addUser(User user) async {
     await DatabaseHelper().insert("users", user.toJson());
     notifyListeners();
   }
+  updateUser(User user) async {
+    removeUser(user);
+    addUser(user);
+    notifyListeners();
+  }
 
   likeUser(User user) async {
     user.favorite = !user.favorite;

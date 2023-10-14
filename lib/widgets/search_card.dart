@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
@@ -15,25 +17,51 @@ class SearchCard extends StatelessWidget {
   final User user;
   @override
   Widget build(BuildContext context) {
-    return Material(
-      elevation: 5,
-      borderRadius: AppRadius.radius20,
-      child: Container(
-        width: Device.getScreenWidth(context),
-        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-        height: Device.getDeviceScreenHeight(context, 18),
-        decoration: BoxDecoration(
-          borderRadius: AppRadius.radius20,
-          color: AppColor.googleBlue,
-        ),
-        child: Row(
-          children: [
-            CircleAvatar(
-              radius: 20,
-              backgroundImage: NetworkImage(user.picture),
-            )
-          ],
-        ),
+    return Container(
+      width: Device.getScreenWidth(context),
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+      margin: const EdgeInsets.symmetric(vertical: 5),
+      height: Device.getDeviceScreenHeight(context, 10),
+      decoration: BoxDecoration(
+        borderRadius: AppRadius.radius10,
+        color: AppColor.googleBlue,
+      ),
+      child: Row(
+        children: [
+          user.picture.contains("http")
+              ? CircleAvatar(
+            radius: Device.getDeviceScreenWidth(context, 10),
+            backgroundImage: NetworkImage(user.picture),
+          )
+              : CircleAvatar(
+            radius: Device.getDeviceScreenWidth(context, 10),
+            backgroundImage: FileImage(File(user.picture)),
+          ),
+          Column(
+            children: [
+              Text(
+                user.name,
+                style: GoogleFonts.poppins(
+                  fontSize: AppText.p1(context),
+                  fontWeight: FontWeight.w600,
+                  color: AppColor.white,
+                ),
+                softWrap: true,
+                textAlign: TextAlign.start,
+              ),
+              Text(
+                user.phone,
+                style: GoogleFonts.poppins(
+                  fontSize: AppText.p3(context),
+                  fontWeight: FontWeight.w600,
+                  color: AppColor.white70,
+                ),
+                softWrap: true,
+                textAlign: TextAlign.start,
+              ),
+            ],
+          )
+        ],
       ),
     );
   }

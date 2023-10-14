@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:technical_test_dac_tech/constants/genders.dart';
 import 'package:technical_test_dac_tech/data/models/user.dart';
 
-class AddUserProvider extends ChangeNotifier {
+class UserProvider extends ChangeNotifier {
+  int? id;
   String? firstName;
   String? lastName;
   String gender = genders[0];
@@ -81,12 +82,33 @@ class AddUserProvider extends ChangeNotifier {
      city= " ";
      state= " ";
      country= " ";
-     setData();
+     saveData();
+     updateData();
      notifyListeners();
   }
-  setData(){
+  saveData(){
     user = User(name: "$firstName $lastName", gender: gender, phone: phone!, email: email!, birthday: birthday!, picture: picture, street: street!, city: city!, state: state!, country: country!, favorite: favorite);
     print(user!.toJson().toString());
     notifyListeners();
+  }
+  updateData(){
+    user = User(id: id,name: "$firstName $lastName", gender: gender, phone: phone!, email: email!, birthday: birthday!, picture: picture, street: street!, city: city!, state: state!, country: country!, favorite: favorite);
+    print(user!.toJson().toString());
+    notifyListeners();
+  }
+  goToUpdate(User user){
+    id = user.id;
+    lastName = user.name.split(" ")[1];
+    firstName = user.name.split(" ")[0];
+    gender = user.gender;
+    phone= user.phone;
+    email= user.email;
+    birthday= user.birthday;
+    picture= user.picture;
+    street= user.street;
+    city= user.city;
+    state= user.state;
+    country= user.country;
+    favorite = user.favorite;
   }
 }
