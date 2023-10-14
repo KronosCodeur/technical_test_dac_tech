@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:technical_test_dac_tech/data/providers/add_user_provider.dart';
+import 'package:technical_test_dac_tech/data/providers/user_provider.dart';
 import 'package:technical_test_dac_tech/data/providers/data_provider.dart';
+import 'package:technical_test_dac_tech/data/providers/search_provider.dart';
 import 'package:technical_test_dac_tech/routing/app_routes.dart';
 import 'package:technical_test_dac_tech/themes/app_theme.dart';
 
@@ -9,7 +10,8 @@ void main() {
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => DataProvider()),
-      ChangeNotifierProvider(create: (_) => AddUserProvider()),
+      ChangeNotifierProvider(create: (_) => UserProvider()),
+      ChangeNotifierProvider(create: (_) => SearchProvider()),
     ],
     child: const MyApp(),
   ));
@@ -20,7 +22,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<DataProvider>(context, listen: false).setUsersData();
     return MaterialApp(
       routes: AppRouting.routes,
       debugShowCheckedModeBanner: false,
